@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação de DOM</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0077cc;
+        }
+
+        #container {
+            border: 2px dashed #0077cc;
+            background-color: #e6f7ff;
+            padding: 20px;
+            min-height: 150px;
+            border-radius: 8px;
+            margin-top: 15px;
+            overflow-y: auto;
+        }
+
+        #inputText {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 2px solid #0077cc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        #inputText:focus {
+            border-color: #005fa3;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #0077cc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #005fa3;
+        }
+
+        #addButton {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        #countButton {
+            margin: 15px 0;
+            display: block;
+            width: 100%;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Adicionar Parágrafos</h1>
+    <input type="text" id="inputText" placeholder="Digite algo aqui..." />
+    <button id="addButton">Adicionar Parágrafo</button>
+    <div id="container"></div>
+    <button id="countButton">Contar Linhas</button>
+
+    <script>
+        const inputText = document.getElementById('inputText');
+        const container = document.getElementById('container');
+        const addButton = document.getElementById('addButton');
+        const countButton = document.getElementById('countButton');
+
+        let lineCount = 0;
+
+        // Adiciona um parágrafo ao container
+        addButton.addEventListener('click', () => {
+            const text = inputText.value.trim();
+            if (text) {
+                const p = document.createElement('p');
+                p.textContent = text;
+                container.appendChild(p);
+                inputText.value = '';
+                lineCount++;
+            } else {
+                alert('Por favor, insira um texto!');
+            }
+        });
+
+        // Mostra a quantidade de linhas adicionadas
+        countButton.addEventListener('click', () => {
+            alert(`${lineCount} linha${lineCount !== 1 ? 's' : ''} foram adicionada${lineCount !== 1 ? 's' : ''}.`);
+        });
+    </script>
+</body>
+</html>
